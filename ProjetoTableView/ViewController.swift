@@ -18,22 +18,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        self.tableView.register(UINib(nibName: "AppleAndroidTableViewCell", bundle: nil), forCellReuseIdentifier: "cellAppleAndroid")
     }
     
     //MARK: - TableView
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3 //FIXME: Trocar para 5
+        return 1 //FIXME: Trocar para 5
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 30
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 230
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellBasic", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellAppleAndroid", for: indexPath) as! AppleAndroidTableViewCell
         
-        cell.textLabel?.text = "Section: \(indexPath.section) | Row: \(indexPath.row)"
+        cell.backgroundColor = UIColor.brown
+        
+        cell.rowMultiplier.text = "< \(indexPath.row) x"
         
         return cell
+
     }
 
 }
