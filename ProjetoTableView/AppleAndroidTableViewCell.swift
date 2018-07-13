@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Reusable
 
-class AppleAndroidTableViewCell: UITableViewCell {
+class AppleAndroidTableViewCell: UITableViewCell, NibReusable {
        
     @IBOutlet weak var rowMultiplier: UILabel!
     

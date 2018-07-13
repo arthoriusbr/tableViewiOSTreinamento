@@ -6,11 +6,9 @@
 //  Copyright © 2018 administrador. All rights reserved.
 //
 
-//TODO:
-
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController{
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,10 +16,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.register(UINib(nibName: "AppleAndroidTableViewCell", bundle: nil), forCellReuseIdentifier: "cellAppleAndroid")
+        self.tableView.register(cellType: AppleAndroidTableViewCell.self)
+//        self.tableView.register(UINib(nibName: "AppleAndroidTableViewCell", bundle: nil), forCellReuseIdentifier: "cellAppleAndroid")
     }
+}
+//MARK: - TableView
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
-    //MARK: - TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1 //FIXME: Trocar para 5
     }
@@ -34,7 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellAppleAndroid", for: indexPath) as! AppleAndroidTableViewCell
+        let cell = tableView.dequeueReusableCell(for: indexPath) as AppleAndroidTableViewCell
         
         cell.backgroundColor = UIColor.brown
         
